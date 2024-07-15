@@ -13,8 +13,13 @@ namespace ResumeProject.Repositories.Implements
 
         public async Task<int> InsertAsync(UserInsertDTO user)
         {
-            var query = "Insert INTO public.user (name,surname,email,profile_description, phone_number,birthplace, nationality,is_deleted) Values (:name,:surname,:email,:profile_description, :phone_number, :birthplace, :nationality,false)";
-            var result = await _connection.ExecuteAsync(query, new {name = user.Name ,surname = user.Surname, email = user.Email,profile_description = user.Profile_Description,phone_number = user.Phone_Number,birthplace = user.Birthplace,nationality = user.Nationality});
+
+            var query = "Insert INTO public.user (name,surname,email,profile_description, phone_number,birthplace, nationality) " +
+                "Values (:name,:surname,:email,:profile_description, :phone_number, :birthplace, :nationality)";
+            var result = await _connection.ExecuteAsync(query, new
+            {
+
+            });
             if(result == 0)
             {
                 throw new Exception("Cannot create");
